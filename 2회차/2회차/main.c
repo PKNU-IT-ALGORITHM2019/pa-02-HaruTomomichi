@@ -31,7 +31,7 @@ void find_distance(int k, double distance) {
 	}
 
 	if (k == N) {
-		distance += cal_distance(data[temp[0]].x, data[temp[0]].y, data[k - 1].x, data[k - 1].y);
+		distance += cal_distance(data[0].x, data[0].y, data[k - 1].x, data[k - 1].y);
 		for (int i = 0; i < 4; i++) {
 			printf("%d ", temp[i]);
 		}
@@ -41,12 +41,7 @@ void find_distance(int k, double distance) {
 	}
 
 	for (int i = k; i < N; i++) {
-		if (k == 0) {
-			for (int i = 1; i < N; i++) {
-				temp[i] = 0;
-			}
-		}
-
+		
 		if (k < i && k != 0) {
 			distance -= cal_distance(data[find_temp(temp[k])].x, data[find_temp(temp[k])].y, data[find_temp(temp[k-1])].x, data[find_temp(temp[k-1])].y);
 		}
@@ -64,11 +59,11 @@ void print() {
 	for (int i = 0; i < N; i++) {
 		printf("%d  ", result[i]);
 	}
-	printf("\n최소값 : %f", final_distance);
+	printf("\n최소값 : %lf", final_distance);
 }
 
 void input() {
-	FILE *fp = fopen("data.txt", "r");
+	FILE *fp = fopen("input0.txt", "r");
 
 	fscanf(fp, "%d", &N);
 
@@ -97,6 +92,6 @@ void swap(int k, int i) {
 	data[k] = data[i];
 	data[i] = temp;
 }
-float cal_distance(int x1, int y1, int x2, int y2) {
+double cal_distance(int x1, int y1, int x2, int y2) {
 	return sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2));
 }
