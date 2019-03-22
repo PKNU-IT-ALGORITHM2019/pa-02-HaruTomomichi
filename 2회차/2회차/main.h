@@ -6,16 +6,29 @@
 
 #define MAX 100
 
-int x[MAX], y[MAX], n = 0;
-double result = 0;
+int N = 0;
+double final_distance = 2000000.0, temp_distance = 0;
+
+typedef struct LOCATION {
+	int index;
+	int x;
+	int y;
+}LOCATION;
+
+LOCATION data[MAX];
+int result[MAX];
+
+void print();
+
+void analysis(double distance);
 
 void input();
 
-double cal_distance(int x1, int y1, int x2, int y2);
+double cal_distance(int cur, int i);
 
-void start();
+void swap(int cur, int i);
 
-double find_distance(int cur, double distance);
+void find_distance(int cur, double distance);
 
 
 
