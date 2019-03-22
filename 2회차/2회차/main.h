@@ -7,7 +7,7 @@
 #define MAX 100
 
 int N = 0;
-double final_distance = 2000000.0, temp_distance = 0;
+double final_distance = 2000000.0;
 
 typedef struct LOCATION {
 	int index;
@@ -18,7 +18,7 @@ typedef struct LOCATION {
 LOCATION data[MAX];
 int result[MAX];
 
-void find_distance(int level, int k, double distance);
+void find_distance(int k);
 
 void print();
 

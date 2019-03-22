@@ -3,7 +3,7 @@
 void main() {
 	input();
 
-	find_distance(0,0,0);
+	find_distance(0,0);
 
 	print();
 
@@ -11,28 +11,15 @@ void main() {
 	getchar();
 }
 
-void find_distance(int level,int k, double distance) {
-	if (level > 0) {
-		distance += cal_distance(data[level].x, data[level].y, data[level-1].x, data[level-1].y);
-	}
-
-	if (distance > final_distance) {
-		level--;
-		return;
-	}
-	
-	if (level == N-1) {
-		result[level] = data[k].index;
-		distance += cal_distance(data[result[0]].x, data[result[0]].y, data[k].x, data[k].y);
-		analysis(distance);
-		level--;
+void find_distance(int k) {
+	if (k == N-1) {
+		
 		return;
 	}
 
 	for (int i = k; i < N; i++) {
 		swap(k, i);
-		result[k] = data[i].index;
-		find_distance(++level,k+1,distance);
+		find_distance(k+=1);
 		swap(k, i);
 	}
 }
@@ -58,9 +45,10 @@ void input() {
 }
 
 void analysis(double distance) {
-	if (distance < final_distance) {
-		final_distance = distance;
+	for (int i = 0; i < N; i++) {
+
 	}
+	
 }
 
 void swap(int k, int i) {
