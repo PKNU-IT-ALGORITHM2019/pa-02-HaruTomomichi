@@ -1,11 +1,19 @@
 #include "main.h"
 
 void main() {
+	clock_t start, end;
+
 	input();
+	
+	start = clock();
 
 	find_distance(0, 0);
 
 	print();
+
+	end = clock();
+
+	printf("실행 시간은 %lf초입니다", (double)(end - start) / CLOCKS_PER_SEC);
 
 	getchar();
 	getchar();
@@ -32,10 +40,6 @@ void find_distance(int k, double distance) {
 
 	if (k == N) {
 		distance += cal_distance(data[0].x, data[0].y, data[k - 1].x, data[k - 1].y);
-		for (int i = 0; i < N; i++) {
-			printf("%d ", temp[i]);
-		}
-		printf("%f\n", distance);
 		analysis(distance);
 		return;
 	}
@@ -59,11 +63,11 @@ void print() {
 	for (int i = 0; i < N; i++) {
 		printf("%d  ", result[i]);
 	}
-	printf("\n최소값 : %lf", final_distance);
+	printf("\n최소값 : %lf\n", final_distance);
 }
 
 void input() {
-	FILE *fp = fopen("input1.txt", "r");
+	FILE *fp = fopen("input5.txt", "r");
 
 	fscanf(fp, "%d", &N);
 
@@ -92,6 +96,7 @@ void swap(int k, int i) {
 	data[k] = data[i];
 	data[i] = temp;
 }
+
 double cal_distance(int x1, int y1, int x2, int y2) {
 	return sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2));
 }

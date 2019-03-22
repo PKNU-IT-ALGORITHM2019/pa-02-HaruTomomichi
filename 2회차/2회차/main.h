@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdbool.h>
+#include <time.h>
 
 #pragma warning(disable:4996)
 
