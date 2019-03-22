@@ -11,6 +11,15 @@ void main() {
 	getchar();
 }
 
+int find_temp(int answer) {
+	for (int i = 0; i < N; i++) {
+		if (answer == data[i].index) {
+			return i;
+		}
+	}
+	return -1;
+}
+
 void find_distance(int k, double distance) {
 
 	if (k > 0 && k!= N) {
@@ -32,12 +41,18 @@ void find_distance(int k, double distance) {
 	}
 
 	for (int i = k; i < N; i++) {
-		if (k < i) {
-			distance -= cal_distance(data[temp[k]].x, data[temp[k]].y, data[temp[k-1]].x, data[temp[k-1]].y);
+		if (k == 0) {
+			for (int i = 1; i < N; i++) {
+				temp[i] = 0;
+			}
+		}
+
+		if (k < i && k != 0) {
+			distance -= cal_distance(data[find_temp(temp[k])].x, data[find_temp(temp[k])].y, data[find_temp(temp[k-1])].x, data[find_temp(temp[k-1])].y);
 		}
 		temp[k] = data[i].index;
 		swap(k, i);
-		if (k < i) {
+		if (k < i && k != 0) {
 			distance += cal_distance(data[k].x, data[k].y, data[k - 1].x, data[k - 1].y);
 		}
 		find_distance(k+1, distance);
@@ -53,7 +68,7 @@ void print() {
 }
 
 void input() {
-	FILE *fp = fopen("input0.txt", "r");
+	FILE *fp = fopen("data.txt", "r");
 
 	fscanf(fp, "%d", &N);
 

@@ -1,6 +1,7 @@
 #pragma once
 #include <stdio.h>
 #include <math.h>
+#include <stdbool.h>
 
 #pragma warning(disable:4996)
 
@@ -17,6 +18,8 @@ typedef struct LOCATION {
 
 LOCATION data[MAX] = { 0 };
 int result[MAX] = { 0 }, temp[MAX] = { 0 };
+
+int find_temp(int answer);
 
 void find_distance(int k, double distance);
 
