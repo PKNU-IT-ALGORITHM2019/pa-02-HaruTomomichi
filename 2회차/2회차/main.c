@@ -13,7 +13,7 @@ void main() {
 
 void find_distance(int k) {
 	if (k == N-1) {
-		
+		analysis();
 		return;
 	}
 
@@ -44,7 +44,7 @@ void input() {
 	fclose(fp);
 }
 
-void analysis(double distance) {
+void analysis() {
 	for (int i = 0; i < N; i++) {
 
 	}
