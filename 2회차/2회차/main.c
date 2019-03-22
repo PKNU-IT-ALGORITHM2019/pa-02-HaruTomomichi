@@ -32,7 +32,7 @@ void find_distance(int k, double distance) {
 
 	if (k == N) {
 		distance += cal_distance(data[0].x, data[0].y, data[k - 1].x, data[k - 1].y);
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < N; i++) {
 			printf("%d ", temp[i]);
 		}
 		printf("%f\n", distance);
@@ -63,7 +63,7 @@ void print() {
 }
 
 void input() {
-	FILE *fp = fopen("input0.txt", "r");
+	FILE *fp = fopen("input1.txt", "r");
 
 	fscanf(fp, "%d", &N);
 
