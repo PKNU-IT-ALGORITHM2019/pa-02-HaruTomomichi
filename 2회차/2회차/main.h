@@ -18,17 +18,17 @@ typedef struct LOCATION {
 LOCATION data[MAX];
 int result[MAX];
 
-void print();
+void find_distance(int level, int k, double distance);
 
-void analysis(double distance);
+void print();
 
 void input();
 
-double cal_distance(int cur, int i);
+void analysis(double distance);
 
 void swap(int cur, int i);
 
-void find_distance(int cur, double distance);
+double cal_distance(int x1, int y1, int x2, int y2);
 
 
 

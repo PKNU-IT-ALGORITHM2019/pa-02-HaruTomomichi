@@ -3,10 +3,38 @@
 void main() {
 	input();
 
-	find_distance(0, 0);
+	find_distance(0,0,0);
+
+	print();
 
 	getchar();
 	getchar();
+}
+
+void find_distance(int level,int k, double distance) {
+	if (level > 0) {
+		distance += cal_distance(data[level].x, data[level].y, data[level-1].x, data[level-1].y);
+	}
+
+	if (distance > final_distance) {
+		level--;
+		return;
+	}
+	
+	if (level == N-1) {
+		result[level] = data[k].index;
+		distance += cal_distance(data[result[0]].x, data[result[0]].y, data[k].x, data[k].y);
+		analysis(distance);
+		level--;
+		return;
+	}
+
+	for (int i = k; i < N; i++) {
+		swap(k, i);
+		result[k] = data[i].index;
+		find_distance(++level,k+1,distance);
+		swap(k, i);
+	}
 }
 
 void print() {
@@ -22,15 +50,11 @@ void input() {
 	fscanf(fp, "%d", &N);
 
 	for (int i = 0; i < N; i++) {
-		fscanf(fp, "%d %d", &data[i].x,&data[i].y);
-		data[i].index = i+1;
+		fscanf(fp, "%d %d", &data[i].x, &data[i].y);
+		data[i].index = i;
 	}
 
 	fclose(fp);
-}
-
-double cal_distance(int x1,int y1,int x2,int y2) {
-	return sqrt(pow(x1-x2, 2) + pow(y1-y2, 2));
 }
 
 void analysis(double distance) {
@@ -39,37 +63,18 @@ void analysis(double distance) {
 	}
 }
 
-void swap(int cur, int i) {
+void swap(int k, int i) {
 	int temp = 0;
 
-	temp = data[cur].x;
-	data[cur].x = data[i].x;
+	temp = data[k].x;
+	data[k].x = data[i].x;
 	data[i].x = temp;
 
-	temp = data[cur].y;
-	data[cur].y = data[i].y;
+	temp = data[k].y;
+	data[k].y = data[i].y;
 	data[i].y = temp;
 }
 
-void find_distance(int cur, double distance) {
-
-	if (distance > final_distance) {
-		return;
-	}
-	
-	if (cur == N-1) {
-		result[cur] = data[cur].index;
-		distance += cal_distance(data[result[0]].x, data[result[0]].y, data[cur].x, data[cur].y);
-		analysis(distance);
-		return;
-	}
-
-	for (int i = cur; i < N; i++) {
-		result[cur] = data[cur].index;
-
-		swap(cur, i);
-		distance += cal_distance(data[cur].x,data[cur].y,data[cur+1].x,data[cur+1].y);
-		find_distance(cur + 1,distance);
-		swap(cur, i);
-	}
+double cal_distance(int x1, int y1, int x2, int y2) {
+	return sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2));
 }
